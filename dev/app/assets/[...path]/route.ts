@@ -17,6 +17,10 @@ const TYPES: Record<string, string> = {
   ".woff2": "font/woff2",
 };
 
+export function generateStaticParams() {
+  return [];
+}
+
 export async function GET(
   _req: Request,
   ctx: { params: Promise<{ path: string[] }> },
