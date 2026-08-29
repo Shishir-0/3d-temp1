@@ -21,30 +21,28 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, onSelectProj
   });
 
   return (
-    <section id="projects" className="py-24 sm:py-36 px-6 sm:px-12 max-w-7xl mx-auto">
-      {/* SECTION HEADER */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 sm:mb-20 pb-8 border-b border-stone-200/60 dark:border-stone-800/60">
+    <section id="projects" className="py-28 sm:py-40 px-6 sm:px-12 max-w-7xl mx-auto">
+      {/* SECTION HEADER — RESTRAINED EDITORIAL STYLE */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-24 pb-8 border-b border-stone-200/50 dark:border-stone-800/50">
         <div>
           <div className="inline-flex items-center space-x-2 text-[10px] font-mono tracking-[0.3em] text-stone-500 dark:text-stone-400 uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-stone-900 dark:bg-stone-100" />
             <span>PORTFOLIO / SELECTED WORK</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-light tracking-tight mt-3">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight mt-3">
             Selected Works
           </h2>
         </div>
 
-        <div className="mt-6 md:mt-0 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
-          <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 max-w-md leading-relaxed font-light">
-            A curated portfolio of monolithic residences, private villas, and interior architecture defined by materiality and natural light.
-          </p>
-        </div>
+        <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 max-w-md mt-6 md:mt-0 leading-relaxed font-light">
+          A curated portfolio of monolithic residences, private villas, and interior architecture defined by materiality and natural light.
+        </p>
       </div>
 
       {/* PORTFOLIO CATEGORY FILTER */}
-      <div className="flex flex-wrap items-center gap-3 mb-16 pb-4">
+      <div className="flex flex-wrap items-center gap-2.5 mb-16 pb-2">
         <span className="text-[10px] font-mono text-stone-400 dark:text-stone-500 uppercase tracking-widest mr-2">
-          FILTER:
+          INDEX:
         </span>
         {categories.map((cat) => {
           const isActive = selectedFilter === cat;
@@ -55,7 +53,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, onSelectProj
               className={`px-4 py-2 rounded-xs text-[10px] font-mono tracking-[0.2em] uppercase transition-all duration-300 cursor-pointer ${
                 isActive
                   ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 font-bold shadow-xs"
-                  : "bg-stone-100 dark:bg-stone-900/60 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800"
+                  : "bg-stone-100/80 dark:bg-stone-900/60 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800"
               }`}
             >
               {cat}
@@ -65,7 +63,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, onSelectProj
       </div>
 
       {/* EDITORIAL PORTFOLIO PROJECT LIST */}
-      <div className="space-y-24 sm:space-y-36">
+      <div className="space-y-28 sm:space-y-40">
         {filteredProjects.map((project, index) => {
           const isEven = index % 2 === 0;
 
@@ -73,7 +71,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, onSelectProj
             <article
               key={project.id}
               onClick={() => onSelectProject(project)}
-              className="group cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center p-6 sm:p-8 rounded-xs bg-white/70 dark:bg-[#121110]/70 backdrop-blur-md border border-stone-200/60 dark:border-stone-800/60 hover:border-stone-400 dark:hover:border-stone-600 transition-all duration-500 shadow-xs"
+              className="group cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center p-6 sm:p-10 rounded-xs bg-white/65 dark:bg-[#121110]/65 backdrop-blur-md border border-stone-200/50 dark:border-stone-800/50 hover:border-stone-400/80 dark:hover:border-stone-600/80 transition-all duration-500 shadow-xs"
             >
               {/* IMAGE CONTAINER */}
               <div
@@ -87,12 +85,12 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, onSelectProj
                     alt={project.title}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
                   />
                 </div>
 
                 {/* CORNER NUMBERING BADGE */}
-                <div className="absolute top-5 left-5 px-3.5 py-1.5 bg-stone-950/85 text-white backdrop-blur-md rounded-xs text-[10px] font-mono tracking-widest uppercase">
+                <div className="absolute top-5 left-5 px-3.5 py-1.5 bg-stone-950/80 text-white backdrop-blur-md rounded-xs text-[10px] font-mono tracking-widest uppercase">
                   {project.id}
                 </div>
               </div>
@@ -119,7 +117,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, onSelectProj
                 </p>
 
                 {/* SPECIFICATION DIVIDER */}
-                <div className="grid grid-cols-2 gap-4 py-4 border-t border-b border-stone-200/60 dark:border-stone-800/60 text-[11px] font-mono">
+                <div className="grid grid-cols-2 gap-4 py-4 border-t border-b border-stone-200/50 dark:border-stone-800/50 text-[11px] font-mono">
                   <div>
                     <span className="block text-[9px] text-stone-400 dark:text-stone-500 uppercase tracking-widest">
                       COMPLETION
@@ -145,7 +143,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, onSelectProj
                       e.stopPropagation();
                       onSelectProject(project);
                     }}
-                    className="inline-flex items-center space-x-3 px-6 py-3 bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:opacity-85 transition-opacity cursor-pointer shadow-sm"
+                    className="inline-flex items-center space-x-3 px-6 py-3 bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:opacity-85 transition-opacity cursor-pointer shadow-sm hover:scale-105 active:scale-95 duration-200"
                   >
                     <span>View Case Study</span>
                     <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>

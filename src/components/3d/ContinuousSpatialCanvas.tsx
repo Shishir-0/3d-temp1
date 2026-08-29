@@ -54,11 +54,11 @@ export const ContinuousSpatialCanvas: React.FC<ContinuousSpatialCanvasProps> = (
 
     const scene = new THREE.Scene();
     const fogColor = isDarkMode ? 0x121110 : 0xfbfaf8;
-    scene.fog = new THREE.FogExp2(fogColor, 0.024);
+    scene.fog = new THREE.FogExp2(fogColor, 0.022);
 
-    const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 120);
-    const cameraPos = new THREE.Vector3(9.5, 4.2, 11.5);
-    const cameraTarget = new THREE.Vector3(0, 0.4, 0);
+    const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 140);
+    const cameraPos = new THREE.Vector3(9.2, 4.0, 11.2);
+    const cameraTarget = new THREE.Vector3(0.4, 0.35, 0.4);
     camera.position.copy(cameraPos);
     camera.lookAt(cameraTarget);
 
@@ -75,29 +75,41 @@ export const ContinuousSpatialCanvas: React.FC<ContinuousSpatialCanvasProps> = (
     renderer.shadowMap.enabled = !prefersReducedMotion;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    // --- LIGHTING ---
-    const ambientLight = new THREE.AmbientLight(isDarkMode ? 0x383532 : 0xfdfaf5, isDarkMode ? 1.4 : 1.8);
+    // --- NATURAL ARCHITECTURAL LIGHTING SYSTEM ---
+    // Warm Ground & Interior Bounce Ambient Light
+    const ambientLight = new THREE.AmbientLight(
+      isDarkMode ? 0x302e2b : 0xfbf7f0,
+      isDarkMode ? 1.3 : 1.7
+    );
     scene.add(ambientLight);
 
-    const sunLight = new THREE.DirectionalLight(isDarkMode ? 0xf0e6dc : 0xfffaed, isDarkMode ? 2.0 : 2.8);
-    sunLight.position.set(14, 20, 11);
+    // Warm Late-Afternoon Sun Directional Light
+    const sunLight = new THREE.DirectionalLight(
+      isDarkMode ? 0xf5ebd9 : 0xfff8eb,
+      isDarkMode ? 2.2 : 3.0
+    );
+    sunLight.position.set(16, 22, 12);
     sunLight.castShadow = !prefersReducedMotion;
     if (sunLight.castShadow) {
       sunLight.shadow.mapSize.width = isHighQuality ? 1024 : 512;
       sunLight.shadow.mapSize.height = isHighQuality ? 1024 : 512;
       sunLight.shadow.camera.near = 2;
-      sunLight.shadow.camera.far = 70;
-      const d = 16;
+      sunLight.shadow.camera.far = 80;
+      const d = 18;
       sunLight.shadow.camera.left = -d;
       sunLight.shadow.camera.right = d;
       sunLight.shadow.camera.top = d;
       sunLight.shadow.camera.bottom = -d;
-      sunLight.shadow.bias = -0.0003;
+      sunLight.shadow.bias = -0.00025;
     }
     scene.add(sunLight);
 
-    const skyFillLight = new THREE.DirectionalLight(isDarkMode ? 0x1f2830 : 0xbfd3e6, isDarkMode ? 0.6 : 0.85);
-    skyFillLight.position.set(-12, -4, -9);
+    // Soft Atmospheric Sky Dome Fill Light
+    const skyFillLight = new THREE.DirectionalLight(
+      isDarkMode ? 0x1a242d : 0xc2d4e4,
+      isDarkMode ? 0.65 : 0.85
+    );
+    skyFillLight.position.set(-14, -4, -10);
     scene.add(skyFillLight);
 
     // --- ARCHITECTURAL WORLD MODEL ---
@@ -112,7 +124,7 @@ export const ContinuousSpatialCanvas: React.FC<ContinuousSpatialCanvasProps> = (
 
     const cameraRail = new CameraRail();
 
-    // --- MOUSE PARALLAX RIG ---
+    // --- RESTRAINED CINEMATIC MOUSE RIG ---
     let mouseX = 0;
     let mouseY = 0;
     let targetMouseX = 0;
@@ -146,27 +158,32 @@ export const ContinuousSpatialCanvas: React.FC<ContinuousSpatialCanvasProps> = (
     let animationFrameId: number;
 
     const renderLoop = () => {
-      // Smooth mouse lerp
-      mouseX += (targetMouseX - mouseX) * 0.04;
-      mouseY += (targetMouseY - mouseY) * 0.04;
+      // Ultra-smooth lerping
+      mouseX += (targetMouseX - mouseX) * 0.03;
+      mouseY += (targetMouseY - mouseY) * 0.03;
 
       // Evaluate camera rail at current scroll progress
       const railState = cameraRail.evaluate(scrollProgressRef.current, targetRailPos, targetRailLook);
 
       // Smooth camera position interpolation
-      currentPos.lerp(targetRailPos, 0.06);
-      currentTarget.lerp(targetRailLook, 0.06);
+      currentPos.lerp(targetRailPos, 0.055);
+      currentTarget.lerp(targetRailLook, 0.055);
 
-      // Apply subtle mouse parallax offset to camera position
-      camera.position.x = currentPos.x + mouseX * 0.7;
-      camera.position.y = currentPos.y - mouseY * 0.4;
+      // Subtle architectural perspective parallax
+      camera.position.x = currentPos.x + mouseX * 0.55;
+      camera.position.y = currentPos.y - mouseY * 0.3;
       camera.position.z = currentPos.z;
       camera.lookAt(currentTarget.x, currentTarget.y, currentTarget.z);
 
-      // Dynamic light intensity transition
-      sunLight.intensity = THREE.MathUtils.lerp(sunLight.intensity, isDarkMode ? railState.lightIntensity * 0.7 : railState.lightIntensity, 0.05);
+      // Lighting transition
+      sunLight.intensity = THREE.MathUtils.lerp(
+        sunLight.intensity,
+        isDarkMode ? railState.lightIntensity * 0.75 : railState.lightIntensity,
+        0.04
+      );
+
       if (scene.fog && scene.fog instanceof THREE.FogExp2) {
-        scene.fog.density = THREE.MathUtils.lerp(scene.fog.density, railState.fogDensity, 0.05);
+        scene.fog.density = THREE.MathUtils.lerp(scene.fog.density, railState.fogDensity, 0.04);
       }
 
       renderer.render(scene, camera);
@@ -208,21 +225,21 @@ export const ContinuousSpatialCanvas: React.FC<ContinuousSpatialCanvasProps> = (
           className="absolute inset-0 w-full h-full object-cover"
         />
       ) : (
-        /* FALLBACK */
-        <div className="absolute inset-0 flex items-center justify-center opacity-60">
-          <div className="text-[11px] font-mono tracking-widest uppercase">
+        /* RESTRAINED AXONOMETRIC FALLBACK */
+        <div className="absolute inset-0 flex items-center justify-center opacity-40">
+          <div className="text-[10px] font-mono tracking-[0.25em] uppercase text-stone-500">
             ARCHITECTURAL SPATIAL ENVIRONMENT — STILL
           </div>
         </div>
       )}
 
-      {/* ATMOSPHERIC VIGNETTE */}
+      {/* QUIET TONAL ATMOSPHERE VIGNETTE */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: isDarkMode
-            ? "radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(18, 17, 16, 0.65) 100%)"
-            : "radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(251, 250, 248, 0.55) 100%)",
+            ? "radial-gradient(ellipse at 50% 45%, transparent 45%, rgba(18, 17, 16, 0.7) 100%)"
+            : "radial-gradient(ellipse at 50% 45%, transparent 45%, rgba(251, 250, 248, 0.58) 100%)",
         }}
       />
     </div>

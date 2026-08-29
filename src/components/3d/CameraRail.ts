@@ -12,85 +12,85 @@ export interface CameraKeyframe {
 
 export class CameraRail {
   public keyframes: CameraKeyframe[] = [
-    // 01 HERO — Entrance Plinth & Reflection Basin
+    // 01 HERO — Low-angle monumentality looking past reflecting pool toward monolithic travertine wall
     {
       progress: 0.0,
-      position: new THREE.Vector3(8.5, 3.8, 10.5),
-      target: new THREE.Vector3(0.5, 0.4, 0.5),
-      lightIntensity: 2.8,
-      sunPosition: new THREE.Vector3(14, 20, 11),
-      ambientColor: 0xfffaf2,
+      position: new THREE.Vector3(8.8, 3.6, 10.8),
+      target: new THREE.Vector3(0.4, 0.35, 0.4),
+      lightIntensity: 3.0,
+      sunPosition: new THREE.Vector3(16, 22, 12),
+      ambientColor: 0xfff8eb,
+      fogDensity: 0.020,
+    },
+    // 02 SELECTED WORKS — Glide revealing the project installation pavilions and colonnade perspective
+    {
+      progress: 0.22,
+      position: new THREE.Vector3(-4.8, 2.6, -6.5),
+      target: new THREE.Vector3(-4.2, 0.5, -13.0),
+      lightIntensity: 2.7,
+      sunPosition: new THREE.Vector3(12, 19, 4),
+      ambientColor: 0xfbf3e4,
       fogDensity: 0.022,
     },
-    // 02 STUDIO — Interior Light Court & Atrium
+    // 03 FLAGSHIP CASE STUDY — Rising vantage framing cantilevered roof void and glass light court
     {
-      progress: 0.14,
-      position: new THREE.Vector3(3.2, 2.5, 1.5),
-      target: new THREE.Vector3(-1.5, 0.9, -6.0),
+      progress: 0.40,
+      position: new THREE.Vector3(4.6, 3.2, -9.0),
+      target: new THREE.Vector3(3.0, 0.7, -14.5),
       lightIntensity: 2.5,
-      sunPosition: new THREE.Vector3(12, 18, 5),
-      ambientColor: 0xfff6eb,
+      sunPosition: new THREE.Vector3(9, 17, -4),
+      ambientColor: 0xf5ebd9,
       fogDensity: 0.024,
     },
-    // 03 SELECTED PROJECTS — Project Exhibition Pavilions
+    // 04 STUDIO PHILOSOPHY — Interior perspective looking through the double-height atrium
     {
-      progress: 0.30,
-      position: new THREE.Vector3(-3.2, 2.2, -4.5),
-      target: new THREE.Vector3(-3.0, 0.6, -12.0),
-      lightIntensity: 2.3,
-      sunPosition: new THREE.Vector3(9, 16, -2),
-      ambientColor: 0xf5eedf,
-      fogDensity: 0.026,
-    },
-    // 04 FEATURED COVER STORY — Flagship Architectural Installation
-    {
-      progress: 0.45,
-      position: new THREE.Vector3(4.0, 2.8, -7.5),
-      target: new THREE.Vector3(2.5, 0.8, -13.5),
-      lightIntensity: 2.1,
-      sunPosition: new THREE.Vector3(7, 15, -6),
-      ambientColor: 0xede4d5,
-      fogDensity: 0.028,
-    },
-    // 05 MATERIAL ARCHIVE — Workshop Slabs & Pedestals
-    {
-      progress: 0.60,
-      position: new THREE.Vector3(4.2, 1.8, -13.0),
-      target: new THREE.Vector3(6.8, 0.4, -18.5),
+      progress: 0.56,
+      position: new THREE.Vector3(-2.8, 2.2, -5.0),
+      target: new THREE.Vector3(-2.2, 1.2, -8.5),
       lightIntensity: 2.4,
-      sunPosition: new THREE.Vector3(9, 15, -12),
-      ambientColor: 0xf7f0e6,
+      sunPosition: new THREE.Vector3(8, 16, -8),
+      ambientColor: 0xefe5d2,
       fogDensity: 0.025,
     },
-    // 06 SPATIAL DRAWINGS — Draftsman's Floating Drawing Plates
+    // 05 MATERIAL ARCHIVE — Close-up tactile framing across the stone, brass and timber specimen slabs
     {
-      progress: 0.74,
-      position: new THREE.Vector3(1.2, 2.4, -19.5),
-      target: new THREE.Vector3(-2.2, 1.2, -25.0),
-      lightIntensity: 2.0,
-      sunPosition: new THREE.Vector3(5, 13, -18),
-      ambientColor: 0xe8e2d8,
-      fogDensity: 0.027,
+      progress: 0.70,
+      position: new THREE.Vector3(4.6, 1.8, -14.5),
+      target: new THREE.Vector3(7.2, 0.4, -20.0),
+      lightIntensity: 2.6,
+      sunPosition: new THREE.Vector3(10, 16, -14),
+      ambientColor: 0xf7f0e4,
+      fogDensity: 0.023,
     },
-    // 07 SERVICES & JOURNAL — Discipline Colonnade & Portals
+    // 06 ARCHITECTURAL DRAWINGS — Elevated drafting perspective framing floating architectural plates
     {
-      progress: 0.88,
-      position: new THREE.Vector3(-4.5, 2.8, -25.0),
-      target: new THREE.Vector3(0.0, 1.4, -31.0),
-      lightIntensity: 1.8,
-      sunPosition: new THREE.Vector3(3, 11, -24),
-      ambientColor: 0xdfd9ce,
-      fogDensity: 0.030,
+      progress: 0.82,
+      position: new THREE.Vector3(1.0, 2.6, -21.0),
+      target: new THREE.Vector3(-2.4, 1.4, -26.5),
+      lightIntensity: 2.2,
+      sunPosition: new THREE.Vector3(6, 14, -20),
+      ambientColor: 0xeae2d4,
+      fogDensity: 0.026,
     },
-    // 08 NOCTURNE CHAMBER — Commissions & Inquiries
+    // 07 SERVICES & JOURNAL — Passage through the monumental dark concrete colonnade
+    {
+      progress: 0.92,
+      position: new THREE.Vector3(-4.8, 3.0, -26.5),
+      target: new THREE.Vector3(0.0, 1.6, -33.0),
+      lightIntensity: 1.9,
+      sunPosition: new THREE.Vector3(4, 12, -26),
+      ambientColor: 0xded5c6,
+      fogDensity: 0.028,
+    },
+    // 08 NOCTURNE GALLERY CHAMBER — Commissions & Inquiries with warm twilight atmosphere
     {
       progress: 1.0,
-      position: new THREE.Vector3(0.0, 2.0, -30.5),
-      target: new THREE.Vector3(0.0, 0.6, -36.0),
-      lightIntensity: 1.3,
-      sunPosition: new THREE.Vector3(0, 9, -30),
+      position: new THREE.Vector3(0.0, 2.2, -32.0),
+      target: new THREE.Vector3(0.0, 0.7, -38.5),
+      lightIntensity: 1.4,
+      sunPosition: new THREE.Vector3(1, 9, -32),
       ambientColor: 0x1f1e1c,
-      fogDensity: 0.036,
+      fogDensity: 0.034,
     },
   ];
 
