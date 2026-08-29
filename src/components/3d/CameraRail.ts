@@ -12,85 +12,85 @@ export interface CameraKeyframe {
 
 export class CameraRail {
   public keyframes: CameraKeyframe[] = [
-    // 01 HERO — Entrance Plinth & Monoliths
+    // 01 HERO — Entrance Plinth & Reflection Basin
     {
       progress: 0.0,
-      position: new THREE.Vector3(9.5, 4.2, 11.5),
-      target: new THREE.Vector3(0, 0.4, 0),
+      position: new THREE.Vector3(8.5, 3.8, 10.5),
+      target: new THREE.Vector3(0.5, 0.4, 0.5),
       lightIntensity: 2.8,
       sunPosition: new THREE.Vector3(14, 20, 11),
       ambientColor: 0xfffaf2,
-      fogDensity: 0.024,
+      fogDensity: 0.022,
     },
     // 02 STUDIO — Interior Light Court & Atrium
     {
       progress: 0.14,
-      position: new THREE.Vector3(2.5, 2.8, 6.5),
-      target: new THREE.Vector3(-1.0, 1.2, -1.0),
-      lightIntensity: 2.4,
-      sunPosition: new THREE.Vector3(10, 18, 8),
+      position: new THREE.Vector3(3.2, 2.5, 1.5),
+      target: new THREE.Vector3(-1.5, 0.9, -6.0),
+      lightIntensity: 2.5,
+      sunPosition: new THREE.Vector3(12, 18, 5),
       ambientColor: 0xfff6eb,
-      fogDensity: 0.026,
+      fogDensity: 0.024,
     },
-    // 03 SELECTED PROJECTS — Project Pavilion 01 & 02
+    // 03 SELECTED PROJECTS — Project Exhibition Pavilions
     {
       progress: 0.30,
-      position: new THREE.Vector3(-4.5, 2.2, 3.5),
-      target: new THREE.Vector3(-6.5, 1.0, -1.5),
-      lightIntensity: 2.2,
-      sunPosition: new THREE.Vector3(8, 16, 5),
+      position: new THREE.Vector3(-3.2, 2.2, -4.5),
+      target: new THREE.Vector3(-3.0, 0.6, -12.0),
+      lightIntensity: 2.3,
+      sunPosition: new THREE.Vector3(9, 16, -2),
       ambientColor: 0xf5eedf,
-      fogDensity: 0.028,
+      fogDensity: 0.026,
     },
-    // 04 FEATURED PROJECT — Flagship Spatial Installation
+    // 04 FEATURED COVER STORY — Flagship Architectural Installation
     {
       progress: 0.45,
-      position: new THREE.Vector3(-1.5, 3.5, -4.0),
-      target: new THREE.Vector3(2.0, 1.8, -8.0),
-      lightIntensity: 2.0,
-      sunPosition: new THREE.Vector3(6, 14, 2),
+      position: new THREE.Vector3(4.0, 2.8, -7.5),
+      target: new THREE.Vector3(2.5, 0.8, -13.5),
+      lightIntensity: 2.1,
+      sunPosition: new THREE.Vector3(7, 15, -6),
       ambientColor: 0xede4d5,
-      fogDensity: 0.030,
+      fogDensity: 0.028,
     },
     // 05 MATERIAL ARCHIVE — Workshop Slabs & Pedestals
     {
       progress: 0.60,
-      position: new THREE.Vector3(5.5, 2.0, -9.5),
-      target: new THREE.Vector3(8.0, 0.8, -13.0),
-      lightIntensity: 2.3,
-      sunPosition: new THREE.Vector3(10, 15, -6),
+      position: new THREE.Vector3(4.2, 1.8, -13.0),
+      target: new THREE.Vector3(6.8, 0.4, -18.5),
+      lightIntensity: 2.4,
+      sunPosition: new THREE.Vector3(9, 15, -12),
       ambientColor: 0xf7f0e6,
-      fogDensity: 0.026,
+      fogDensity: 0.025,
     },
-    // 06 SPATIAL DRAWINGS — Draftsman's Floating Planes
+    // 06 SPATIAL DRAWINGS — Draftsman's Floating Drawing Plates
     {
       progress: 0.74,
-      position: new THREE.Vector3(1.0, 2.6, -16.0),
-      target: new THREE.Vector3(-2.5, 1.4, -20.0),
+      position: new THREE.Vector3(1.2, 2.4, -19.5),
+      target: new THREE.Vector3(-2.2, 1.2, -25.0),
       lightIntensity: 2.0,
-      sunPosition: new THREE.Vector3(4, 12, -12),
+      sunPosition: new THREE.Vector3(5, 13, -18),
       ambientColor: 0xe8e2d8,
-      fogDensity: 0.028,
+      fogDensity: 0.027,
     },
-    // 07 SERVICES & JOURNAL — Monolith Colonnade
+    // 07 SERVICES & JOURNAL — Discipline Colonnade & Portals
     {
       progress: 0.88,
-      position: new THREE.Vector3(-6.0, 3.2, -22.5),
-      target: new THREE.Vector3(-1.0, 1.6, -27.0),
-      lightIntensity: 1.7,
-      sunPosition: new THREE.Vector3(2, 10, -18),
+      position: new THREE.Vector3(-4.5, 2.8, -25.0),
+      target: new THREE.Vector3(0.0, 1.4, -31.0),
+      lightIntensity: 1.8,
+      sunPosition: new THREE.Vector3(3, 11, -24),
       ambientColor: 0xdfd9ce,
-      fogDensity: 0.032,
+      fogDensity: 0.030,
     },
-    // 08 CONTACT — The Nocturne Gallery Space
+    // 08 NOCTURNE CHAMBER — Commissions & Inquiries
     {
       progress: 1.0,
-      position: new THREE.Vector3(0.0, 2.2, -30.0),
-      target: new THREE.Vector3(0.0, 1.0, -35.0),
-      lightIntensity: 1.2,
-      sunPosition: new THREE.Vector3(0, 8, -25),
+      position: new THREE.Vector3(0.0, 2.0, -30.5),
+      target: new THREE.Vector3(0.0, 0.6, -36.0),
+      lightIntensity: 1.3,
+      sunPosition: new THREE.Vector3(0, 9, -30),
       ambientColor: 0x1f1e1c,
-      fogDensity: 0.038,
+      fogDensity: 0.036,
     },
   ];
 
