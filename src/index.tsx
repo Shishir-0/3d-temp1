@@ -391,12 +391,24 @@ export default defineTemplate({
     const [activeSection, setActiveSection] = useState("hero");
     const [scrollProgress, setScrollProgress] = useState(0);
 
-    // Continuous Scroll Progress Calculation
+    // Continuous Scroll Progress Calculation & Active Section Detection
     useEffect(() => {
       const handleScroll = () => {
         const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
         const currentProgress = totalScroll > 0 ? window.scrollY / totalScroll : 0;
         setScrollProgress(Math.min(1, Math.max(0, currentProgress)));
+
+        // Real-time Active Section Tracking
+        const sectionIds = ["contact", "journal", "services", "materiality", "studio", "projects", "hero"];
+        const scrollPosition = window.scrollY + window.innerHeight * 0.35;
+
+        for (const id of sectionIds) {
+          const el = document.getElementById(id);
+          if (el && el.offsetTop <= scrollPosition) {
+            setActiveSection(id);
+            break;
+          }
+        }
       };
 
       window.addEventListener("scroll", handleScroll, { passive: true });
@@ -478,7 +490,7 @@ export default defineTemplate({
                 <div className="md:col-span-5 flex flex-wrap items-center gap-4">
                   <button
                     onClick={() => handleNavigate("projects")}
-                    className="px-8 py-4 bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:opacity-85 transition-opacity cursor-pointer flex items-center space-x-2.5 shadow-xl"
+                    className="px-8 py-4 bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:opacity-85 transition-opacity cursor-pointer flex items-center space-x-2.5 shadow-xl hover:scale-105 active:scale-95 duration-200"
                   >
                     <span>{ctaProjects}</span>
                     <span>↓</span>
@@ -486,7 +498,7 @@ export default defineTemplate({
 
                   <button
                     onClick={() => handleNavigate("studio")}
-                    className="px-8 py-4 bg-white/80 dark:bg-[#121110]/80 backdrop-blur-md border border-stone-300/80 dark:border-stone-700/80 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-sm"
+                    className="px-8 py-4 bg-white/80 dark:bg-[#121110]/80 backdrop-blur-md border border-stone-300/80 dark:border-stone-700/80 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-sm hover:scale-105 active:scale-95 duration-200"
                   >
                     {ctaStudio}
                   </button>
