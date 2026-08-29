@@ -2,4 +2,6 @@ dist/
 .cutiepage/
 node_modules/
 dev/.next/
+dev/out/
 dev/next-env.d.ts
+.vercel/
