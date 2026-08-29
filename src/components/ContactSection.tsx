@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 interface ContactSectionProps {
+  studioName?: string;
   headline?: string;
   email?: string;
   phone?: string;
@@ -9,11 +10,12 @@ interface ContactSectionProps {
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
+  studioName = "STUDIO NAME",
   headline = "START A PROJECT",
-  email = "contact@atelier-north.com",
-  phone = "+41 44 210 9800",
-  address = "Limmatquai 82, 8001 Zurich, Switzerland",
-  instagram = "@atelier.north.arch",
+  email = "inquiries@yourstudio.com",
+  phone = "+1 (555) 019-2834",
+  address = "Studio Address / City, Country",
+  instagram = "@yourstudio.arch",
 }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -30,12 +32,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-36 px-6 sm:px-10 max-w-7xl mx-auto border-t border-stone-200/60 dark:border-stone-800/60">
+    <section id="contact" className="py-24 sm:py-36 px-6 sm:px-12 max-w-7xl mx-auto border-t border-stone-200/50 dark:border-stone-800/50">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
         {/* STUDIO METADATA */}
         <div className="lg:col-span-5 space-y-8">
           <div>
-            <span className="text-[10px] font-mono tracking-[0.25em] text-stone-500 dark:text-stone-400 uppercase">
+            <span className="text-[10px] font-mono tracking-[0.28em] text-stone-400 dark:text-stone-500 uppercase">
               06 / COMMISSIONS
             </span>
             <h2 className="text-4xl sm:text-6xl font-light tracking-tight mt-2">
@@ -44,10 +46,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           </div>
 
           <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-light leading-relaxed">
-            We collaborate with private clients, developers, and institutions committed to architectural excellence.
+            We collaborate with private clients, developers, and institutions committed to architectural intention and spatial craft.
           </p>
 
-          <div className="space-y-6 pt-6 border-t border-stone-200/60 dark:border-stone-800/60 text-xs font-mono">
+          <div className="space-y-6 pt-6 border-t border-stone-200/50 dark:border-stone-800/50 text-xs font-mono">
             <div>
               <span className="block text-[9px] opacity-40 uppercase tracking-widest">INQUIRIES</span>
               <a href={`mailto:${email}`} className="font-semibold underline hover:opacity-75">
@@ -74,14 +76,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           </div>
         </div>
 
-        {/* ARCHITECTURAL FORM */}
-        <div className="lg:col-span-7 bg-stone-50 dark:bg-stone-900/30 p-8 sm:p-12 rounded-xs border border-stone-200/60 dark:border-stone-800/60">
+        {/* ARCHITECTURAL INQUIRY FORM */}
+        <div className="lg:col-span-7 bg-stone-50 dark:bg-stone-900/30 p-8 sm:p-12 rounded-xs border border-stone-200/50 dark:border-stone-800/50">
           {submitted ? (
             <div className="py-16 text-center space-y-4">
               <span className="text-2xl">✓</span>
               <h3 className="text-2xl font-light tracking-tight">Inquiry Received</h3>
               <p className="text-xs text-stone-500 font-light max-w-sm mx-auto">
-                Thank you for considering Atelier North. Our design partners will review your spatial commission within 48 hours.
+                Thank you for reaching out to {studioName}. Our design team will review your project requirements within 48 hours.
               </p>
             </div>
           ) : (
@@ -96,7 +98,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Elena Rostova"
+                    placeholder="e.g. Client Name"
                     className="w-full bg-transparent border-b border-stone-300 dark:border-stone-700 py-2.5 text-xs focus:outline-hidden focus:border-stone-900 dark:focus:border-stone-100 transition-colors"
                   />
                 </div>
@@ -110,7 +112,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="elena@example.com"
+                    placeholder="client@example.com"
                     className="w-full bg-transparent border-b border-stone-300 dark:border-stone-700 py-2.5 text-xs focus:outline-hidden focus:border-stone-900 dark:focus:border-stone-100 transition-colors"
                   />
                 </div>
@@ -129,7 +131,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <option value="Residential Architecture">Residential Architecture</option>
                     <option value="Interior Architecture">Interior Architecture</option>
                     <option value="Hospitality & Cultural">Hospitality & Cultural</option>
-                    <option value="3D Visualization">3D Spatial Visualization</option>
+                    <option value="3D Spatial Visualization">3D Spatial Visualization</option>
                   </select>
                 </div>
 
@@ -158,14 +160,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Describe site location, timeline, and architectural objectives..."
+                  placeholder="Describe location, spatial objectives, and approximate timeline..."
                   className="w-full bg-transparent border-b border-stone-300 dark:border-stone-700 py-2.5 text-xs focus:outline-hidden focus:border-stone-900 dark:focus:border-stone-100 transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-950 font-semibold text-xs tracking-[0.2em] uppercase rounded-xs hover:opacity-90 transition-opacity cursor-pointer"
+                className="w-full py-4 bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 font-semibold text-xs tracking-[0.2em] uppercase rounded-xs hover:opacity-90 transition-opacity cursor-pointer shadow-md"
               >
                 Send Commission Inquiry
               </button>

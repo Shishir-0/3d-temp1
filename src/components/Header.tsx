@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 interface HeaderProps {
   studioName?: string;
+  studioDescriptor?: string;
   isDarkMode: boolean;
   onToggleDarkMode: () => void;
   activeSection: string;
@@ -9,7 +10,8 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  studioName = "ATELIER NORTH",
+  studioName = "STUDIO NAME",
+  studioDescriptor = "ARCHITECTURE & INTERIORS",
   isDarkMode,
   onToggleDarkMode,
   activeSection,
@@ -53,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({
             {studioName}
           </span>
           <span className="block text-[9px] tracking-[0.26em] text-stone-400 dark:text-stone-500 uppercase mt-0.5">
-            Architecture & Interior
+            {studioDescriptor}
           </span>
         </button>
 
@@ -80,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
 
-        {/* UTILITIES: DARK THEME TOGGLE & MOBILE DRAWER */}
+        {/* UTILITIES: THEME TOGGLE & MOBILE DRAWER */}
         <div className="flex items-center space-x-4">
           <button
             onClick={onToggleDarkMode}

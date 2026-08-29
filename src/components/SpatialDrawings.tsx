@@ -29,7 +29,7 @@ export const SpatialDrawings: React.FC = () => {
 
   const drawings: DrawingItem[] = [
     {
-      title: "CASA MONO — GROUND FLOOR PLAN",
+      title: "01 — RESIDENCE 01 GROUND FLOOR PLAN",
       type: "Architectural Plan",
       scale: "1:100 @ A1",
       description: "Axial arrangement around a central open-air atrium, integrating subterranean living quarters and thermal buffer zones.",
@@ -76,10 +76,10 @@ export const SpatialDrawings: React.FC = () => {
       ),
     },
     {
-      title: "VILLA NO. 07 — LONGITUDINAL SECTION",
+      title: "02 — VILLA 02 LONGITUDINAL SECTION",
       type: "Building Section",
       scale: "1:50 @ A1",
-      description: "Cantilevered structural steel trusses anchoring the upper sleeping volume over Lake Zurich's topographical incline.",
+      description: "Cantilevered structural steel trusses anchoring the upper sleeping volume over topography incline.",
       svg: (
         <svg viewBox="0 0 440 280" className="w-full h-full stroke-current fill-none stroke-[0.85]">
           {/* Elevation Level Markers */}
@@ -106,7 +106,7 @@ export const SpatialDrawings: React.FC = () => {
           <line x1="140" y1="80" x2="390" y2="150" className="stroke-stone-400 dark:stroke-stone-600 stroke-dasharray-[3,3]" />
 
           {/* Space Labels */}
-          <text x="220" y="120" className="text-[8px] font-mono fill-current stroke-none tracking-widest">CANTILEVER RESIDENCE</text>
+          <text x="220" y="120" className="text-[8px] font-mono fill-current stroke-none tracking-widest">CANTILEVER VOLUME</text>
           <text x="80" y="185" className="text-[8px] font-mono fill-current stroke-none tracking-widest">GROUND ATELIER</text>
         </svg>
       ),

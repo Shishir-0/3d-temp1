@@ -3,10 +3,15 @@ import { ProjectItem } from "../types";
 
 interface ProjectDetailModalProps {
   project: ProjectItem | null;
+  studioName?: string;
   onClose: () => void;
 }
 
-export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClose }) => {
+export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
+  project,
+  studioName = "STUDIO NAME",
+  onClose,
+}) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -105,7 +110,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
               />
             </div>
             <span className="block text-[10px] font-mono text-stone-400 uppercase tracking-widest">
-              FIG 01. NATURAL DAYLIGHT PENETRATION ACROSS TRAVERTINE PLINTH
+              FIG 01. DAYLIGHT PENETRATION ACROSS NATURAL HONED PLINTH
             </span>
           </div>
 
@@ -118,15 +123,15 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
               />
             </div>
             <span className="block text-[10px] font-mono text-stone-400 uppercase tracking-widest">
-              FIG 02. BOARD-FORMED CONCRETE & SMOKED OAK JOINERY INTERSECTION
+              FIG 02. BOARD-FORMED CONCRETE & TIMBER JOINERY INTERSECTION
             </span>
           </div>
         </div>
 
         {/* FOOTNOTE CREDITS */}
         <div className="pt-12 border-t border-stone-200/60 dark:border-stone-800/60 flex flex-col sm:flex-row justify-between text-xs font-mono opacity-50 space-y-2 sm:space-y-0">
-          <div>COMMISSION: ATELIER NORTH ARCHITECTURAL PRACTICE</div>
-          <div>DOCUMENTATION: ARCHITECTURAL MONOGRAPH ARCHIVE</div>
+          <div>COMMISSION: {studioName}</div>
+          <div>DOCUMENTATION: ARCHITECTURAL PORTFOLIO ARCHIVE</div>
         </div>
       </div>
     </div>

@@ -21,47 +21,47 @@ import { ContactSection } from "./components/ContactSection";
 import { ProjectDetailModal } from "./components/ProjectDetailModal";
 import { Footer } from "./components/Footer";
 
-// DEFAULT DATASETS
+// DEFAULT PREVIEW DATASETS (NEUTRAL TEMPLATE PLACEHOLDERS)
 const DEFAULT_PROJECTS: ProjectItem[] = [
   {
     id: "01",
-    title: "Casa Mono",
+    title: "Residence 01",
     category: "Residential Architecture",
-    location: "Mumbai, India",
+    location: "Zurich, Switzerland",
     year: "2026",
     area: "4,800 sq ft",
     imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600",
-    description: "A subterranean monolithic residence sculpted from travertine and board-formed concrete, prioritizing natural cross-ventilation, rainwater harvesting, and deep shadow play.",
+    description: "A subterranean monolithic residence sculpted from natural travertine and board-formed concrete, prioritizing natural cross-ventilation, rainwater harvesting, and deep shadow play.",
   },
   {
     id: "02",
-    title: "Villa No. 07",
-    category: "Luxury Residence",
-    location: "Zurich, Switzerland",
+    title: "House 02",
+    category: "Contemporary Residence",
+    location: "Kyoto, Japan",
     year: "2025",
     area: "6,200 sq ft",
     imageUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1600",
-    description: "A minimalist cantilevered glass villa suspended over Lake Zurich, integrating floor-to-ceiling triple glazing, burnt cedar cladding, and geothermal heating.",
+    description: "A minimalist cantilevered glass villa suspended over lake topography, integrating floor-to-ceiling triple glazing, burnt cedar cladding, and geothermal heating.",
   },
   {
     id: "03",
-    title: "Stone House",
+    title: "Villa 03",
     category: "Interior Architecture",
-    location: "Kyoto, Japan",
+    location: "Mumbai, India",
     year: "2025",
     area: "3,500 sq ft",
     imageUrl: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1600",
-    description: "A contemplative Japanese courtyard residence featuring raw basalt masonry, acoustic shoji screens, and custom hand-rubbed brass joinery.",
+    description: "A contemplative courtyard residence featuring raw basalt masonry, acoustic screens, and custom hand-rubbed brass joinery.",
   },
   {
     id: "04",
-    title: "Atelier 48",
+    title: "Interior 04",
     category: "Spatial & Gallery Design",
     location: "Copenhagen, Denmark",
     year: "2024",
     area: "5,100 sq ft",
     imageUrl: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1600",
-    description: "An adaptive reuse gallery and design laboratory housed in a historic 19th-century brick warehouse with stainless steel spatial partitions.",
+    description: "An adaptive reuse gallery and design laboratory housed in a historic brick warehouse with stainless steel spatial partitions.",
   },
 ];
 
@@ -167,9 +167,9 @@ export default defineTemplate({
 
   fieldGroups: {
     hero: {
-      label: "Hero & Opening",
+      label: "Hero & Identity",
       blockType: "hero",
-      description: "Studio title and opening headline statement",
+      description: "Studio title, descriptor, and opening statement",
     },
     studio: {
       label: "Studio Philosophy",
@@ -182,7 +182,7 @@ export default defineTemplate({
       description: "Portfolio projects list",
     },
     materiality: {
-      label: "Material Library",
+      label: "Material Archive",
       blockType: "details",
       description: "Physical material specifications",
     },
@@ -210,7 +210,21 @@ export default defineTemplate({
       group: "hero",
       required: true,
       maxLength: 40,
-      default: "ATELIER NORTH",
+      default: "STUDIO NAME",
+    },
+    studioDescriptor: {
+      type: "text",
+      label: "Studio Descriptor",
+      group: "hero",
+      maxLength: 60,
+      default: "ARCHITECTURE & INTERIORS",
+    },
+    heroEyebrow: {
+      type: "text",
+      label: "Hero Eyebrow Label",
+      group: "hero",
+      maxLength: 80,
+      default: "EXHIBITION / STATION 01 — ARCHITECTURE & SPATIAL DESIGN",
     },
     heroHeadline: {
       type: "text",
@@ -251,7 +265,7 @@ export default defineTemplate({
       label: "Studio Detailed Philosophy",
       group: "studio",
       maxLength: 320,
-      default: "Founded in 2018, Atelier North operates at the intersection of architecture, interior design, and spatial philosophy. We create calm, precise, and enduring environments.",
+      default: "Founded on principles of spatial purity and material authenticity, our practice operates at the intersection of architecture, interior design, and structural philosophy.",
     },
     stat1Number: { type: "text", label: "Metric 1 Value", group: "studio", default: "24+" },
     stat1Label: { type: "text", label: "Metric 1 Label", group: "studio", default: "Completed Works" },
@@ -266,13 +280,13 @@ export default defineTemplate({
     },
     materialityTitle: {
       type: "text",
-      label: "Material Library Title",
+      label: "Material Archive Title",
       group: "materiality",
       default: "ARCHITECTURAL MATERIAL ARCHIVE",
     },
     materialityDesc: {
       type: "text",
-      label: "Material Library Description",
+      label: "Material Archive Description",
       group: "materiality",
       default: "Physicality is our primary language. Every surface is chosen for its tactile warmth, aging patina, and light interaction.",
     },
@@ -301,25 +315,31 @@ export default defineTemplate({
       type: "text",
       label: "Contact Email",
       group: "contact",
-      default: "contact@atelier-north.com",
+      default: "inquiries@yourstudio.com",
     },
     contactPhone: {
       type: "text",
       label: "Contact Phone",
       group: "contact",
-      default: "+41 44 210 9800",
+      default: "+1 (555) 019-2834",
     },
     contactAddress: {
       type: "text",
       label: "Studio Address",
       group: "contact",
-      default: "Limmatquai 82, 8001 Zurich, Switzerland",
+      default: "Studio Address / City, Country",
     },
     contactInstagram: {
       type: "text",
       label: "Instagram Handle",
       group: "contact",
-      default: "@atelier.north.arch",
+      default: "@yourstudio.arch",
+    },
+    footerCopyright: {
+      type: "text",
+      label: "Footer Copyright Note",
+      group: "contact",
+      default: "ALL RIGHTS RESERVED.",
     },
   },
 
@@ -329,14 +349,16 @@ export default defineTemplate({
     const fgVal = theme.foreground || "#1c1b1a";
     const darkBgVal = theme.darkBg || "#121110";
 
-    const studioName = useField<string>("studioName") || "ATELIER NORTH";
+    const studioName = useField<string>("studioName") || "STUDIO NAME";
+    const studioDescriptor = useField<string>("studioDescriptor") || "ARCHITECTURE & INTERIORS";
+    const heroEyebrow = useField<string>("heroEyebrow") || "EXHIBITION / STATION 01 — ARCHITECTURE & SPATIAL DESIGN";
     const heroHeadline = useField<string>("heroHeadline") || "Designing spaces shaped by intention, material, and proportion.";
     const heroDesc = useField<string>("heroDesc") || "A contemporary architecture and interior practice creating quiet, enduring residential and cultural environments worldwide.";
     const ctaProjects = useField<string>("ctaProjects") || "Explore Selected Work";
     const ctaContact = useField<string>("ctaContact") || "Start a Project";
 
     const studioStatement = useField<string>("studioStatement") || "Architecture begins with the way light enters a room and lives through the materiality of its craft.";
-    const studioDesc = useField<string>("studioDesc") || "Founded in 2018, Atelier North operates at the intersection of architecture, interior design, and spatial philosophy. We create calm, precise, and enduring environments.";
+    const studioDesc = useField<string>("studioDesc") || "Founded on principles of spatial purity and material authenticity, our practice operates at the intersection of architecture, interior design, and structural philosophy.";
     const stat1Number = useField<string>("stat1Number") || "24+";
     const stat1Label = useField<string>("stat1Label") || "Completed Works";
     const stat2Number = useField<string>("stat2Number") || "12";
@@ -353,10 +375,11 @@ export default defineTemplate({
     const materialityDesc = useField<string>("materialityDesc") || "Physicality is our primary language. Every surface is chosen for its tactile warmth, aging patina, and light interaction.";
 
     const contactHeadline = useField<string>("contactHeadline") || "START A PROJECT";
-    const contactEmail = useField<string>("contactEmail") || "contact@atelier-north.com";
-    const contactPhone = useField<string>("contactPhone") || "+41 44 210 9800";
-    const contactAddress = useField<string>("contactAddress") || "Limmatquai 82, 8001 Zurich, Switzerland";
-    const contactInstagram = useField<string>("contactInstagram") || "@atelier.north.arch";
+    const contactEmail = useField<string>("contactEmail") || "inquiries@yourstudio.com";
+    const contactPhone = useField<string>("contactPhone") || "+1 (555) 019-2834";
+    const contactAddress = useField<string>("contactAddress") || "Studio Address / City, Country";
+    const contactInstagram = useField<string>("contactInstagram") || "@yourstudio.arch";
+    const footerCopyright = useField<string>("footerCopyright") || "ALL RIGHTS RESERVED.";
 
     // Parsed datasets
     const projects = parseProjects(rawProjects, DEFAULT_PROJECTS);
@@ -400,7 +423,13 @@ export default defineTemplate({
           color: isDarkMode ? "#fbfaf8" : fgVal,
         }}
       >
-        <SEOHead studioName={studioName} description={heroDesc} />
+        <SEOHead
+          studioName={studioName}
+          studioDescriptor={studioDescriptor}
+          description={heroDesc}
+          email={contactEmail}
+          address={contactAddress}
+        />
         <CustomCursor />
 
         {/* FULLSCREEN CONTINUOUS 3D ARCHITECTURAL WORLD */}
@@ -416,6 +445,7 @@ export default defineTemplate({
         {/* FLOATING TOP NAVIGATION */}
         <Header
           studioName={studioName}
+          studioDescriptor={studioDescriptor}
           isDarkMode={isDarkMode}
           onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
           activeSection={activeSection}
@@ -432,7 +462,7 @@ export default defineTemplate({
             <div className="max-w-4xl space-y-8">
               <div className="inline-flex items-center space-x-3 text-[10px] font-mono tracking-[0.3em] uppercase bg-white/70 dark:bg-[#121110]/70 backdrop-blur-md px-4 py-2 rounded-xs border border-stone-200/50 dark:border-stone-800/50 text-stone-600 dark:text-stone-300">
                 <span className="w-1.5 h-1.5 rounded-full bg-stone-950 dark:bg-stone-100" />
-                <span>EXHIBITION / STATION 01 — ARCHITECTURE & SPATIAL DESIGN</span>
+                <span>{heroEyebrow}</span>
               </div>
 
               <h1 className="text-4xl sm:text-7xl lg:text-8xl font-light tracking-tight leading-[1.04]">
@@ -548,6 +578,7 @@ export default defineTemplate({
           {/* STATION 09: COMMISSIONS & CONTACT */}
           <div className="bg-white/60 dark:bg-[#121110]/60 backdrop-blur-md py-12">
             <ContactSection
+              studioName={studioName}
               headline={contactHeadline}
               email={contactEmail}
               phone={contactPhone}
@@ -557,12 +588,22 @@ export default defineTemplate({
           </div>
 
           {/* FOOTER */}
-          <Footer studioName={studioName} onNavigate={handleNavigate} />
+          <Footer
+            studioName={studioName}
+            studioDescriptor={studioDescriptor}
+            contactEmail={contactEmail}
+            contactPhone={contactPhone}
+            contactAddress={contactAddress}
+            contactInstagram={contactInstagram}
+            footerCopyright={footerCopyright}
+            onNavigate={handleNavigate}
+          />
         </div>
 
         {/* CASE STUDY DETAIL MODAL */}
         <ProjectDetailModal
           project={selectedProject}
+          studioName={studioName}
           onClose={() => setSelectedProject(null)}
         />
       </main>

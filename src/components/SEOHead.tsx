@@ -2,25 +2,29 @@ import React from "react";
 
 interface SEOHeadProps {
   studioName?: string;
+  studioDescriptor?: string;
   description?: string;
+  email?: string;
+  address?: string;
 }
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
-  studioName = "ATELIER NORTH",
-  description = "A contemporary architectural and interior design studio shaping spaces through material, light and proportion.",
+  studioName = "STUDIO NAME",
+  studioDescriptor = "ARCHITECTURE & INTERIORS",
+  description = "A contemporary architectural and interior design practice shaping spaces through material, light and proportion.",
+  email = "inquiries@yourstudio.com",
+  address = "Global Practice",
 }) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ArchitectureFirm",
     name: studioName,
+    alternateName: studioDescriptor,
     description: description,
-    url: "https://atelier-north.com",
+    email: email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Limmatquai 82",
-      addressLocality: "Zurich",
-      postalCode: "8001",
-      addressCountry: "CH",
+      streetAddress: address,
     },
     knowsAbout: [
       "Architecture",
