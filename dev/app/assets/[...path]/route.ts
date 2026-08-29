@@ -18,7 +18,7 @@ const TYPES: Record<string, string> = {
 };
 
 export function generateStaticParams() {
-  return [];
+  return [{ path: ["_init"] }];
 }
 
 export async function GET(
@@ -28,7 +28,7 @@ export async function GET(
   const { path } = await ctx.params;
   const rel = normalize(path.join("/"));
   const dir = process.env.CUTIEPAGE_ASSETS_DIR;
-  if (!dir || rel.startsWith("..")) {
+  if (!dir || rel.startsWith("..") || rel === "_init") {
     return new Response("Not found", { status: 404 });
   }
   try {
