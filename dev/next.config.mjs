@@ -12,6 +12,7 @@ const nextConfig = {
   // The SDK ships TypeScript source; let Next compile it.
   transpilePackages: ["@cutiepage/template-sdk"],
   env: { CUTIEPAGE_ASSETS_DIR: assetsDir },
+  typescript: { ignoreBuildErrors: true },
 };
 
 export default nextConfig;

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 /**
  * Renders the template exactly the way the platform does: content defaults,
  * theme defaults, preview mode, assets served from ../assets. Keep this file
@@ -9,6 +10,12 @@
 import template from "../../src/index";
 
 const { Template, config } = template;
+const TemplateComponent = Template as unknown as React.ComponentType<{
+  content: Record<string, unknown>;
+  design: { theme: Record<string, string>; overrides: Record<string, unknown>; canvas: Record<string, unknown> };
+  mode: string;
+  assets: (path: string) => string;
+}>;
 
 const content: Record<string, unknown> = {};
 for (const [id, field] of Object.entries(config.fields ?? {})) {
@@ -35,7 +42,7 @@ for (const [id, token] of Object.entries(config.theme ?? {})) {
 export default function PreviewPage() {
   return (
     <div data-cp-tpl={config.slug}>
-      <Template
+      <TemplateComponent
         content={content}
         design={{ theme, overrides: {}, canvas: {} }}
         mode="preview"
