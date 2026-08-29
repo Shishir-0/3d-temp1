@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cutiepage dev",
     "build": "cutiepage build",
+    "build:vercel": "next build dev",
     "validate": "cutiepage validate",
     "typecheck": "tsc --noEmit"
   },
