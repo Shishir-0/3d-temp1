@@ -25,11 +25,11 @@ export const MaterialLibrary: React.FC<MaterialLibraryProps> = ({
   };
 
   return (
-    <section id="materiality" className="py-28 sm:py-40 px-6 sm:px-12 max-w-7xl mx-auto border-t border-stone-200/50 dark:border-stone-800/50">
+    <section id="materiality" className="py-24 sm:py-36 px-6 sm:px-12 max-w-7xl mx-auto border-t border-stone-200/50 dark:border-stone-800/50">
       {/* SECTION HEADER */}
       <div className="max-w-2xl space-y-4 mb-16 sm:mb-24">
         <span className="text-[10px] font-mono tracking-[0.28em] text-stone-400 dark:text-stone-500 uppercase">
-          02 / MATERIALITY
+          TACTILITY / MATERIALITY
         </span>
         <h2 className="text-3xl sm:text-5xl font-light tracking-tight">
           {title}
@@ -77,7 +77,7 @@ export const MaterialLibrary: React.FC<MaterialLibraryProps> = ({
 
         {/* ACTIVE SPECIFICATION ARCHIVE CARD */}
         {activeMat && (
-          <div className="lg:col-span-7 bg-stone-50 dark:bg-stone-900/40 p-8 sm:p-14 rounded-xs border border-stone-200/50 dark:border-stone-800/50 space-y-8">
+          <div className="lg:col-span-7 bg-stone-50/80 dark:bg-stone-900/40 p-8 sm:p-14 rounded-xs border border-stone-200/50 dark:border-stone-800/50 space-y-8 shadow-sm">
             <div className="flex items-start justify-between">
               <div>
                 <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 dark:text-stone-500">

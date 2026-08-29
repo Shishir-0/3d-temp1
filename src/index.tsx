@@ -7,7 +7,6 @@ import { ProjectItem, MaterialItem, ServiceItem, JournalItem } from "./types";
 import { parseProjects, parseMaterials, parseServices, parseJournal } from "./utils/dataParsers";
 
 import { SEOHead } from "./components/SEOHead";
-import { CustomCursor } from "./components/CustomCursor";
 import { Header } from "./components/Header";
 import { ContinuousSpatialCanvas } from "./components/3d/ContinuousSpatialCanvas";
 import { SpatialHUD } from "./components/SpatialHUD";
@@ -21,7 +20,7 @@ import { ContactSection } from "./components/ContactSection";
 import { ProjectDetailModal } from "./components/ProjectDetailModal";
 import { Footer } from "./components/Footer";
 
-// DEFAULT PREVIEW DATASETS (NEUTRAL TEMPLATE PLACEHOLDERS)
+// DEFAULT PREVIEW DATASETS (NEUTRAL TEMPLATE DEFAULTS)
 const DEFAULT_PROJECTS: ProjectItem[] = [
   {
     id: "01",
@@ -132,7 +131,7 @@ const DEFAULT_JOURNAL: JournalItem[] = [
     category: "ESSAY",
     title: "The Quiet Space: Reducing Visual Noise in Residential Architecture",
     readTime: "5 MIN READ",
-    imageUrl: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1000",
+    imageUrl: "https://images.unsplash.com/photo-160058515526-990dced4db0d?auto=format&fit=crop&q=80&w=1000",
   },
   {
     date: "JUL 2026",
@@ -153,9 +152,9 @@ const DEFAULT_JOURNAL: JournalItem[] = [
 export default defineTemplate({
   slug: "atelier-3d",
   name: "Atelier 3d",
-  description: "A continuous 3D architectural & interior design portfolio template where the entire website exists inside a virtual architectural gallery.",
+  description: "A luxury 3D architectural & interior design portfolio template showcasing selected projects in an immersive virtual spatial gallery.",
   category: "portfolio",
-  tags: ["architecture", "interior", "3d", "spatial", "luxury"],
+  tags: ["architecture", "interior", "portfolio", "3d", "spatial", "luxury"],
 
   theme: {
     background: { type: "color", label: "Light Background", default: "#fbfaf8" },
@@ -167,34 +166,34 @@ export default defineTemplate({
 
   fieldGroups: {
     hero: {
-      label: "Hero & Identity",
+      label: "Hero & Studio Identity",
       blockType: "hero",
-      description: "Studio title, descriptor, and opening statement",
+      description: "Studio title, descriptor, headline, and call to actions",
+    },
+    projects: {
+      label: "Selected Portfolio Projects",
+      blockType: "gallery",
+      description: "Primary architectural portfolio projects list",
     },
     studio: {
       label: "Studio Philosophy",
       blockType: "story",
-      description: "Architectural narrative and metrics",
-    },
-    projects: {
-      label: "Selected Projects",
-      blockType: "gallery",
-      description: "Portfolio projects list",
+      description: "Architectural narrative, approach, and metrics",
     },
     materiality: {
       label: "Material Archive",
       blockType: "details",
-      description: "Physical material specifications",
+      description: "Physical material specifications and research",
     },
     services: {
       label: "Services & Disciplines",
       blockType: "details",
-      description: "Architectural offerings",
+      description: "Architectural practice offerings",
     },
     journal: {
       label: "Journal & Essays",
       blockType: "story",
-      description: "Editorial articles",
+      description: "Editorial articles and essays",
     },
     contact: {
       label: "Contact & Inquiries",
@@ -224,7 +223,7 @@ export default defineTemplate({
       label: "Hero Eyebrow Label",
       group: "hero",
       maxLength: 80,
-      default: "EXHIBITION / STATION 01 — ARCHITECTURE & SPATIAL DESIGN",
+      default: "ARCHITECTURE & INTERIORS / SELECTED WORKS PORTFOLIO",
     },
     heroHeadline: {
       type: "text",
@@ -243,15 +242,20 @@ export default defineTemplate({
     },
     ctaProjects: {
       type: "text",
-      label: "CTA Projects Label",
+      label: "Primary CTA Label (View Projects)",
       group: "hero",
-      default: "Explore Selected Work",
+      default: "View Projects",
     },
-    ctaContact: {
+    ctaStudio: {
       type: "text",
-      label: "CTA Contact Label",
+      label: "Secondary CTA Label (About Studio)",
       group: "hero",
-      default: "Start a Project",
+      default: "About Studio",
+    },
+    projectsData: {
+      type: "textarea",
+      label: "Projects List (ID|Title|Category|Location|Year|Area|ImageURL|Description per line)",
+      group: "projects",
     },
     studioStatement: {
       type: "text",
@@ -273,11 +277,6 @@ export default defineTemplate({
     stat2Label: { type: "text", label: "Metric 2 Label", group: "studio", default: "Design Awards" },
     stat3Number: { type: "text", label: "Metric 3 Value", group: "studio", default: "08" },
     stat3Label: { type: "text", label: "Metric 3 Label", group: "studio", default: "Global Locations" },
-    projectsData: {
-      type: "textarea",
-      label: "Projects List (ID|Title|Category|Location|Year|Area|ImageURL|Description per line)",
-      group: "projects",
-    },
     materialityTitle: {
       type: "text",
       label: "Material Archive Title",
@@ -345,17 +344,15 @@ export default defineTemplate({
 
   render: () => {
     const theme = useTheme();
-    const bgVal = theme.background || "#fbfaf8";
-    const fgVal = theme.foreground || "#1c1b1a";
-    const darkBgVal = theme.darkBg || "#121110";
+    const fgVal = theme?.foreground || "#1c1b1a";
 
     const studioName = useField<string>("studioName") || "STUDIO NAME";
     const studioDescriptor = useField<string>("studioDescriptor") || "ARCHITECTURE & INTERIORS";
-    const heroEyebrow = useField<string>("heroEyebrow") || "EXHIBITION / STATION 01 — ARCHITECTURE & SPATIAL DESIGN";
+    const heroEyebrow = useField<string>("heroEyebrow") || "ARCHITECTURE & INTERIORS / SELECTED WORKS PORTFOLIO";
     const heroHeadline = useField<string>("heroHeadline") || "Designing spaces shaped by intention, material, and proportion.";
     const heroDesc = useField<string>("heroDesc") || "A contemporary architecture and interior practice creating quiet, enduring residential and cultural environments worldwide.";
-    const ctaProjects = useField<string>("ctaProjects") || "Explore Selected Work";
-    const ctaContact = useField<string>("ctaContact") || "Start a Project";
+    const ctaProjects = useField<string>("ctaProjects") || "View Projects";
+    const ctaStudio = useField<string>("ctaStudio") || "About Studio";
 
     const studioStatement = useField<string>("studioStatement") || "Architecture begins with the way light enters a room and lives through the materiality of its craft.";
     const studioDesc = useField<string>("studioDesc") || "Founded on principles of spatial purity and material authenticity, our practice operates at the intersection of architecture, interior design, and structural philosophy.";
@@ -416,7 +413,7 @@ export default defineTemplate({
 
     return (
       <main
-        className={`min-h-screen font-sans relative transition-colors duration-700 ${
+        className={`min-h-screen font-sans relative transition-colors duration-700 cursor-default ${
           isDarkMode ? "dark text-[#fbfaf8]" : "text-[#1c1b1a]"
         }`}
         style={{
@@ -430,7 +427,6 @@ export default defineTemplate({
           email={contactEmail}
           address={contactAddress}
         />
-        <CustomCursor />
 
         {/* FULLSCREEN CONTINUOUS 3D ARCHITECTURAL WORLD */}
         <ContinuousSpatialCanvas
@@ -454,55 +450,78 @@ export default defineTemplate({
 
         {/* SPATIAL SECTIONS (RENDERED AS FLOATING ARCHITECTURAL STATIONS) */}
         <div className="relative z-10 pointer-events-auto">
-          {/* STATION 01: HERO / ARRIVAL PLINTH */}
+          {/* STATION 01: HERO / ARRIVAL & STUDIO IDENTITY */}
           <section
             id="hero"
             className="min-h-screen flex flex-col justify-end px-6 sm:px-12 pb-24 sm:pb-32 pt-32 max-w-7xl mx-auto"
           >
             <div className="max-w-4xl space-y-8">
-              <div className="inline-flex items-center space-x-3 text-[10px] font-mono tracking-[0.3em] uppercase bg-white/70 dark:bg-[#121110]/70 backdrop-blur-md px-4 py-2 rounded-xs border border-stone-200/50 dark:border-stone-800/50 text-stone-600 dark:text-stone-300">
+              <div className="inline-flex items-center space-x-3 text-[10px] font-mono tracking-[0.3em] uppercase bg-white/80 dark:bg-[#121110]/80 backdrop-blur-md px-4 py-2 rounded-xs border border-stone-200/60 dark:border-stone-800/60 text-stone-700 dark:text-stone-300 shadow-xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-stone-950 dark:bg-stone-100" />
                 <span>{heroEyebrow}</span>
               </div>
 
-              <h1 className="text-4xl sm:text-7xl lg:text-8xl font-light tracking-tight leading-[1.04]">
-                {heroHeadline}
-              </h1>
+              <div className="space-y-2">
+                <div className="text-xs sm:text-sm font-mono tracking-[0.24em] text-stone-500 dark:text-stone-400 uppercase">
+                  {studioName} — {studioDescriptor}
+                </div>
+                <h1 className="text-4xl sm:text-7xl lg:text-8xl font-light tracking-tight leading-[1.03]">
+                  {heroHeadline}
+                </h1>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4 items-end">
-                <p className="md:col-span-8 text-sm sm:text-base text-stone-700 dark:text-stone-300 font-light leading-relaxed max-w-xl">
+                <p className="md:col-span-7 text-sm sm:text-base text-stone-700 dark:text-stone-300 font-light leading-relaxed max-w-xl">
                   {heroDesc}
                 </p>
 
-                <div className="md:col-span-4 flex flex-wrap items-center gap-4">
+                <div className="md:col-span-5 flex flex-wrap items-center gap-4">
                   <button
                     onClick={() => handleNavigate("projects")}
-                    className="px-7 py-3.5 bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:opacity-85 transition-opacity cursor-pointer flex items-center space-x-2 shadow-lg"
+                    className="px-8 py-4 bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:opacity-85 transition-opacity cursor-pointer flex items-center space-x-2.5 shadow-xl"
                   >
                     <span>{ctaProjects}</span>
                     <span>↓</span>
                   </button>
 
                   <button
-                    onClick={() => handleNavigate("contact")}
-                    className="px-7 py-3.5 bg-white/80 dark:bg-[#121110]/80 backdrop-blur-md border border-stone-300/80 dark:border-stone-700/80 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                    onClick={() => handleNavigate("studio")}
+                    className="px-8 py-4 bg-white/80 dark:bg-[#121110]/80 backdrop-blur-md border border-stone-300/80 dark:border-stone-700/80 text-xs font-semibold tracking-[0.2em] uppercase rounded-xs hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-sm"
                   >
-                    {ctaContact}
+                    {ctaStudio}
                   </button>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* STATION 02: STUDIO ATRIUM & PHILOSOPHY */}
+          {/* STATION 02: SELECTED WORKS PORTFOLIO (CENTER OF THE EXPERIENCE) */}
+          <div className="bg-white/40 dark:bg-[#121110]/40 backdrop-blur-xs py-8">
+            <ProjectGrid
+              projects={projects}
+              onSelectProject={(proj) => setSelectedProject(proj)}
+            />
+          </div>
+
+          {/* STATION 03: FEATURED COVER STORY / FLAGSHIP WORK */}
+          {projects[0] && (
+            <div className="py-8">
+              <FeaturedProject
+                project={projects[0]}
+                onSelectProject={(proj) => setSelectedProject(proj)}
+              />
+            </div>
+          )}
+
+          {/* STATION 04: STUDIO ATRIUM & PHILOSOPHY */}
           <section
             id="studio"
             className="min-h-screen flex items-center px-6 sm:px-12 py-32 max-w-7xl mx-auto"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start w-full bg-white/60 dark:bg-[#121110]/60 backdrop-blur-md p-8 sm:p-16 rounded-xs border border-stone-200/40 dark:border-stone-800/40 shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start w-full bg-white/70 dark:bg-[#121110]/70 backdrop-blur-md p-8 sm:p-16 rounded-xs border border-stone-200/60 dark:border-stone-800/60 shadow-xl">
               <div className="lg:col-span-7 space-y-8">
                 <span className="text-[10px] font-mono tracking-[0.28em] text-stone-400 dark:text-stone-500 uppercase">
-                  STATION 02 / SPATIAL INTENTION
+                  PHILOSOPHY / SPATIAL INTENTION
                 </span>
 
                 <h2 className="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-snug font-serif italic text-stone-950 dark:text-stone-50">
@@ -532,26 +551,8 @@ export default defineTemplate({
             </div>
           </section>
 
-          {/* STATION 03: SELECTED WORKS PAVILIONS */}
-          <div className="bg-white/40 dark:bg-[#121110]/40 backdrop-blur-xs py-12">
-            <ProjectGrid
-              projects={projects}
-              onSelectProject={(proj) => setSelectedProject(proj)}
-            />
-          </div>
-
-          {/* STATION 04: FEATURED COVER STORY */}
-          {projects[0] && (
-            <div className="py-12">
-              <FeaturedProject
-                project={projects[0]}
-                onSelectProject={(proj) => setSelectedProject(proj)}
-              />
-            </div>
-          )}
-
           {/* STATION 05: MATERIALITY ARCHIVE */}
-          <div className="bg-white/50 dark:bg-[#121110]/50 backdrop-blur-xs py-12">
+          <div className="bg-white/50 dark:bg-[#121110]/50 backdrop-blur-xs py-8">
             <MaterialLibrary
               title={materialityTitle}
               description={materialityDesc}
@@ -561,22 +562,22 @@ export default defineTemplate({
           </div>
 
           {/* STATION 06: SPATIAL DIAGRAMS LIGHTBOX */}
-          <div className="py-12">
+          <div className="py-8">
             <SpatialDrawings />
           </div>
 
           {/* STATION 07: DISCIPLINES & SERVICES */}
-          <div className="bg-white/50 dark:bg-[#121110]/50 backdrop-blur-xs py-12">
+          <div className="bg-white/50 dark:bg-[#121110]/50 backdrop-blur-xs py-8">
             <ServicesSection services={services} />
           </div>
 
           {/* STATION 08: JOURNAL & ESSAYS */}
-          <div className="py-12">
+          <div className="py-8">
             <JournalSection journal={journal} />
           </div>
 
           {/* STATION 09: COMMISSIONS & CONTACT */}
-          <div className="bg-white/60 dark:bg-[#121110]/60 backdrop-blur-md py-12">
+          <div className="bg-white/60 dark:bg-[#121110]/60 backdrop-blur-md py-8">
             <ContactSection
               studioName={studioName}
               headline={contactHeadline}
@@ -600,10 +601,13 @@ export default defineTemplate({
           />
         </div>
 
-        {/* CASE STUDY DETAIL MODAL */}
+        {/* FULL CASE STUDY DETAIL MODAL */}
         <ProjectDetailModal
           project={selectedProject}
+          allProjects={projects}
           studioName={studioName}
+          onSelectProject={(proj) => setSelectedProject(proj)}
+          onNavigateContact={() => handleNavigate("contact")}
           onClose={() => setSelectedProject(null)}
         />
       </main>

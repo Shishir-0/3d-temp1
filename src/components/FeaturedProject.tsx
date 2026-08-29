@@ -11,11 +11,10 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
   onSelectProject,
 }) => {
   return (
-    <section className="py-24 sm:py-36 px-6 sm:px-12 max-w-7xl mx-auto">
+    <section className="py-20 sm:py-32 px-6 sm:px-12 max-w-7xl mx-auto">
       <div
-        className="relative overflow-hidden rounded-xs bg-stone-950 text-white min-h-[580px] sm:min-h-[660px] flex items-end p-8 sm:p-20 group cursor-pointer border border-stone-800/60"
+        className="relative overflow-hidden rounded-xs bg-stone-950 text-white min-h-[560px] sm:min-h-[640px] flex items-end p-8 sm:p-20 group cursor-pointer border border-stone-800/80 shadow-2xl"
         onClick={() => onSelectProject(project)}
-        data-cursor="view"
       >
         {/* BACKGROUND FULL BLEED IMMERSIVE IMAGE */}
         <div className="absolute inset-0 z-0">
@@ -24,15 +23,15 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
             alt={project.title}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover opacity-60 group-hover:scale-[1.015] transition-transform duration-1000 ease-out"
+            className="w-full h-full object-cover opacity-65 group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/45 to-transparent" />
         </div>
 
         {/* TOP EDITORIAL METADATA */}
-        <div className="absolute top-8 left-8 sm:top-12 sm:left-12 z-10 flex items-center space-x-3 text-[10px] font-mono tracking-[0.28em] text-stone-300 uppercase">
-          <span className="w-2 h-2 rounded-full bg-amber-400/90" />
-          <span>FEATURED COVER STORY / ISSUE 08</span>
+        <div className="absolute top-8 left-8 sm:top-12 sm:left-12 z-10 flex items-center space-x-3 text-[10px] font-mono tracking-[0.28em] text-stone-300 uppercase bg-stone-950/70 backdrop-blur-md px-4 py-2 rounded-xs border border-stone-700/50">
+          <span className="w-2 h-2 rounded-full bg-amber-400" />
+          <span>FLAGSHIP WORK / FEATURED COVER STORY</span>
         </div>
 
         {/* CONTENT NARRATIVE */}
@@ -50,11 +49,17 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
           </p>
 
           <div className="pt-4 flex flex-wrap items-center gap-6 text-xs font-mono tracking-[0.2em] uppercase">
-            <button className="px-7 py-3.5 bg-white text-stone-950 font-semibold hover:bg-stone-200 transition-colors rounded-xs flex items-center space-x-3 cursor-pointer">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectProject(project);
+              }}
+              className="px-8 py-4 bg-white text-stone-950 font-semibold hover:bg-stone-200 transition-colors rounded-xs flex items-center space-x-3 cursor-pointer shadow-lg"
+            >
               <span>View Case Study</span>
-              <span>→</span>
+              <span className="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
             </button>
-            <span className="text-stone-400 text-[11px]">SCALE: {project.area}</span>
+            <span className="text-stone-400 text-[11px]">FOOTPRINT: {project.area}</span>
           </div>
         </div>
       </div>

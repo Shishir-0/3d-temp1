@@ -7,12 +7,12 @@ interface JournalSectionProps {
 
 export const JournalSection: React.FC<JournalSectionProps> = ({ journal }) => {
   return (
-    <section id="journal" className="py-24 sm:py-36 px-6 sm:px-10 max-w-7xl mx-auto border-t border-stone-200/60 dark:border-stone-800/60">
+    <section id="journal" className="py-24 sm:py-36 px-6 sm:px-12 max-w-7xl mx-auto border-t border-stone-200/60 dark:border-stone-800/60">
       {/* HEADER */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 pb-6 border-b border-stone-200/60 dark:border-stone-800/60">
         <div>
           <span className="text-[10px] font-mono tracking-[0.25em] text-stone-500 dark:text-stone-400 uppercase">
-            05 / JOURNAL
+            EDITORIAL / JOURNAL
           </span>
           <h2 className="text-3xl sm:text-5xl font-light tracking-tight mt-2">
             Architectural Essays
@@ -28,15 +28,14 @@ export const JournalSection: React.FC<JournalSectionProps> = ({ journal }) => {
         {journal.map((item, idx) => (
           <article
             key={idx}
-            data-cursor="view"
-            className="group cursor-pointer space-y-5"
+            className="group cursor-pointer space-y-5 p-4 rounded-xs bg-stone-50/50 dark:bg-stone-900/20 border border-stone-200/40 dark:border-stone-800/40 hover:border-stone-400 dark:hover:border-stone-600 transition-colors"
           >
             <div className="aspect-16/10 overflow-hidden rounded-xs bg-stone-200 dark:bg-stone-800">
               <img
                 src={item.imageUrl}
                 alt={item.title}
                 loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
             </div>
 
@@ -49,7 +48,7 @@ export const JournalSection: React.FC<JournalSectionProps> = ({ journal }) => {
                 <span>{item.readTime}</span>
               </div>
 
-              <h3 className="text-lg font-light tracking-tight group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-snug">
+              <h3 className="text-base sm:text-lg font-light tracking-tight group-hover:translate-x-1 transition-transform duration-300 leading-snug">
                 {item.title}
               </h3>
             </div>

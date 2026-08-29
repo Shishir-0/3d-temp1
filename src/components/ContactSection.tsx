@@ -38,7 +38,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         <div className="lg:col-span-5 space-y-8">
           <div>
             <span className="text-[10px] font-mono tracking-[0.28em] text-stone-400 dark:text-stone-500 uppercase">
-              06 / COMMISSIONS
+              COMMISSIONS / CONTACT
             </span>
             <h2 className="text-4xl sm:text-6xl font-light tracking-tight mt-2">
               {headline}
@@ -77,10 +77,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         </div>
 
         {/* ARCHITECTURAL INQUIRY FORM */}
-        <div className="lg:col-span-7 bg-stone-50 dark:bg-stone-900/30 p-8 sm:p-12 rounded-xs border border-stone-200/50 dark:border-stone-800/50">
+        <div className="lg:col-span-7 bg-stone-50/90 dark:bg-stone-900/40 p-8 sm:p-12 rounded-xs border border-stone-200/50 dark:border-stone-800/50 shadow-sm">
           {submitted ? (
             <div className="py-16 text-center space-y-4">
-              <span className="text-2xl">✓</span>
+              <span className="text-2xl font-mono">✓</span>
               <h3 className="text-2xl font-light tracking-tight">Inquiry Received</h3>
               <p className="text-xs text-stone-500 font-light max-w-sm mx-auto">
                 Thank you for reaching out to {studioName}. Our design team will review your project requirements within 48 hours.

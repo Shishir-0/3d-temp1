@@ -114,11 +114,11 @@ export const SpatialDrawings: React.FC = () => {
   ];
 
   return (
-    <section className="py-28 sm:py-40 px-6 sm:px-12 max-w-7xl mx-auto border-t border-stone-200/50 dark:border-stone-800/50">
+    <section className="py-24 sm:py-36 px-6 sm:px-12 max-w-7xl mx-auto border-t border-stone-200/50 dark:border-stone-800/50">
       {/* SECTION HEADER */}
       <div className="max-w-2xl space-y-4 mb-16 sm:mb-24">
         <span className="text-[10px] font-mono tracking-[0.28em] text-stone-400 dark:text-stone-500 uppercase">
-          03 / SPATIAL DRAWINGS
+          PROCESS / SPATIAL DRAWINGS
         </span>
         <h2 className="text-3xl sm:text-5xl font-light tracking-tight">
           Architectural Diagrams
@@ -134,10 +134,9 @@ export const SpatialDrawings: React.FC = () => {
           <div
             key={dwg.title}
             onClick={() => setSelectedDrawing(dwg)}
-            data-cursor="view"
             className="group cursor-pointer bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800/50 rounded-xs p-6 space-y-6 hover:border-stone-400 dark:hover:border-stone-600 transition-colors"
           >
-            <div className="aspect-16/10 w-full bg-white dark:bg-[#121110] p-6 rounded-xs border border-stone-200/40 dark:border-stone-800/40 flex items-center justify-center text-stone-800 dark:text-stone-200">
+            <div className="aspect-16/10 w-full bg-white dark:bg-[#121110] p-6 rounded-xs border border-stone-200/40 dark:border-stone-800/40 flex items-center justify-center text-stone-800 dark:text-stone-200 group-hover:scale-[1.01] transition-transform duration-500">
               {dwg.svg}
             </div>
 
@@ -146,7 +145,7 @@ export const SpatialDrawings: React.FC = () => {
                 <span>{dwg.type}</span>
                 <span>{dwg.scale}</span>
               </div>
-              <h3 className="text-lg font-medium tracking-tight group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+              <h3 className="text-lg font-medium tracking-tight group-hover:text-stone-950 dark:group-hover:text-stone-100 transition-colors">
                 {dwg.title}
               </h3>
               <p className="text-xs text-stone-500 dark:text-stone-400 font-light leading-relaxed">
